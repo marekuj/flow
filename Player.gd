@@ -15,14 +15,24 @@ var onair_time = 0
 var on_floor = false
 var alive = true
 
+onready var mouse_pos = get_viewport().get_mouse_position()
 onready var animated_sprite = $AnimatedSprite
 onready var respawn_timer = $RespawnTimer
+onready var weapon = $AnimatedSprite2
+onready var camera = $Camera2D
 
 func _ready():
 	animated_sprite.animation = "idle"
 	animated_sprite.play()
+	weapon.play()
 
+func _input(event):
+	if (event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.pressed):
+		shoot()
+		
 func _physics_process(delta):
+	mouse_pos = camera.get_global_mouse_position()
+	weapon.look_at(mouse_pos)
 	
 	if !alive:
 		return
@@ -80,3 +90,10 @@ func _on_Player_hit():
 
 func _on_RespawnTimer_timeout():
 	get_tree().reload_current_scene()
+	
+func shoot():
+	var bullet = load("res://Bullet.tscn")
+	var bullet_instance = bullet.instance()
+	bullet_instance.position = weapon.get_global_position()
+	bullet_instance.direction = mouse_pos
+	get_parent().add_child(bullet_instance)

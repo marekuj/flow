@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal hit
+
 const GRAVITY_VEC = Vector2(0, 900)
 const FLOOR_NORMAL = Vector2(0, -1)
 const SLOPE_SLIDE_STOP = 25.0
@@ -11,14 +13,19 @@ const SIDING_CHANGE_SPEED = 10
 var velocity = Vector2()
 var onair_time = 0
 var on_floor = false
+var alive = true
 
 onready var animated_sprite = $AnimatedSprite
+onready var respawn_timer = $RespawnTimer
 
 func _ready():
 	animated_sprite.animation = "idle"
 	animated_sprite.play()
 
 func _physics_process(delta):
+	
+	if !alive:
+		return
 
 	onair_time += delta
 
@@ -64,3 +71,12 @@ func _physics_process(delta):
 		animated_sprite.flip_h = velocity.x < 0
 	else:
 		animated_sprite.animation = "idle"
+
+
+func _on_Player_hit():
+	alive = false
+	animated_sprite.animation = "dead"
+	respawn_timer.start()
+
+func _on_RespawnTimer_timeout():
+	get_tree().reload_current_scene()

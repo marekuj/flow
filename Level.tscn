@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Tailset.tres" type="TileSet" id=2]
+[ext_resource path="res://DeadZone.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
 
 [node name="Level" type="Node" index="0"]
 
@@ -9,7 +15,7 @@
 
 position = Vector2( 0, 25 )
 z_index = 100
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index", "collision" ]
 
 [node name="TileMap" type="TileMap" parent="." index="1"]
 
@@ -30,7 +36,35 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( -327682, 20, 0, -262146, 20, 0, -196610, 20, 0, -131078, 25, 0, -131074, 20, 0, -65543, 25, 0, -65542, 25, 0, -65541, 25, 0, -65538, 20, 0, -8, 25, 0, -7, 25, 0, -6, 25, 0, -5, 25, 0, -4, 25, 0, -2, 20, 0, 65527, 25, 0, 65528, 25, 0, 65529, 25, 0, 65530, 25, 0, 65531, 25, 0, 65532, 25, 0, 65533, 25, 0, 65534, 20, 0, 131063, 19, 0, 131064, 19, 0, 131065, 19, 0, 131066, 19, 0, 131067, 19, 0, 131068, 19, 0, 131069, 19, 0, 131070, 20, 0, 131071, 19, 0, 65536, 19, 0, 65537, 19, 0, 65538, 19, 0, 65539, 19, 0, 65540, 19, 0, 65541, 19, 0, 65542, 19, 0, 65543, 19, 0, 65544, 19, 0, 65548, 27, 0, 65549, 28, 0, 65550, 28, 0, 65551, 28, 0, 65552, 28, 0, 65553, 28, 0, 65554, 28, 0, 65555, 30, 0, 262152, 32, 0, 262153, 32, 0, 262154, 32, 0, 262155, 32, 0 )
+tile_data = PoolIntArray( -327682, 20, 0, -262146, 20, 0, -196610, 20, 0, -131078, 25, 0, -131074, 20, 0, -65543, 24, 0, -65542, 24, 0, -65541, 24, 0, -65538, 20, 0, -8, 24, 0, -7, 24, 0, -6, 24, 0, -5, 24, 0, -4, 24, 0, -2, 20, 0, 65527, 24, 0, 65528, 24, 0, 65529, 24, 0, 65530, 24, 0, 65531, 24, 0, 65532, 24, 0, 65533, 24, 0, 65534, 20, 0, 131063, 19, 0, 131064, 19, 0, 131065, 19, 0, 131066, 19, 0, 131067, 19, 0, 131068, 19, 0, 131069, 19, 0, 131070, 20, 0, 131071, 19, 0, 65536, 19, 0, 65537, 19, 0, 65538, 19, 0, 65539, 19, 0, 65540, 19, 0, 65541, 19, 0, 65542, 19, 0, 65543, 19, 0, 65544, 19, 0, 65547, 26, 0, 65548, 27, 0, 65549, 28, 0, 65550, 27, 0, 65551, 27, 0, 65552, 27, 0, 65553, 27, 0, 65554, 28, 0, 65555, 29, 0, 327671, 31, 0, 327672, 31, 0, 327673, 31, 0, 327674, 31, 0, 327675, 31, 0, 327676, 31, 0, 327677, 31, 0, 327678, 31, 0, 327679, 31, 0, 262144, 31, 0, 262145, 31, 0, 262146, 31, 0, 262147, 31, 0, 262148, 31, 0, 262149, 31, 0, 262150, 31, 0, 262151, 31, 0, 262152, 31, 0, 262153, 31, 0, 262154, 31, 0, 262155, 31, 0, 262156, 31, 0, 262157, 31, 0, 262158, 31, 0, 262159, 31, 0, 262160, 31, 0, 262161, 31, 0, 262162, 31, 0, 262163, 31, 0, 262164, 31, 0, 262165, 31, 0, 262166, 31, 0, 262167, 31, 0, 262168, 31, 0, 262169, 31, 0, 262170, 31, 0, 262171, 31, 0, 262172, 31, 0, 262173, 31, 0, 262174, 31, 0, 262175, 31, 0, 262176, 31, 0, 262177, 31, 0, 262178, 31, 0 )
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+
+[node name="DeadZone" type="Node" parent="." index="2"]
+
+script = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="DeadZone" index="0"]
+
+position = Vector2( 830.147, 292.732 )
+scale = Vector2( 43.9788, 1 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadZone/Area2D" index="0"]
+
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="DeadZone/Area2D" to="DeadZone" method="_on_Area2D_body_entered"]
 
 

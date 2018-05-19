@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/fox_10.png" type="Texture" id=2]
@@ -9,10 +9,13 @@
 [ext_resource path="res://assets/character/fox_03.png" type="Texture" id=7]
 [ext_resource path="res://assets/character/fox_07.png" type="Texture" id=8]
 [ext_resource path="res://assets/character/fox_08.png" type="Texture" id=9]
-[ext_resource path="res://assets/character/fox_09.png" type="Texture" id=10]
-[ext_resource path="res://assets/character/fox_04.png" type="Texture" id=11]
-[ext_resource path="res://assets/character/fox_05.png" type="Texture" id=12]
-[ext_resource path="res://assets/character/fox_06.png" type="Texture" id=13]
+[ext_resource path="res://assets/character/fox_25.png" type="Texture" id=10]
+[ext_resource path="res://assets/character/fox_26.png" type="Texture" id=11]
+[ext_resource path="res://assets/character/fox_27.png" type="Texture" id=12]
+[ext_resource path="res://assets/character/fox_04.png" type="Texture" id=13]
+[ext_resource path="res://assets/character/fox_05.png" type="Texture" id=14]
+[ext_resource path="res://assets/character/fox_06.png" type="Texture" id=15]
+[ext_resource path="res://assets/character/fox_09.png" type="Texture" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -32,14 +35,19 @@ animations = [ {
 "name": "ascend",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
-"loop": false,
-"name": "descend",
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "dead",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "move",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": false,
+"name": "descend",
 "speed": 5.0
 } ]
 
@@ -52,10 +60,11 @@ height = 27.0263
 [node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 3
+collision_mask = 3
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "collision" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 
@@ -91,5 +100,16 @@ animation = "idle"
 
 position = Vector2( 2.64078, 5.28152 )
 shape = SubResource( 2 )
+
+[node name="RespawnTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[connection signal="hit" from="." to="." method="_on_Player_hit"]
+
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
 
 

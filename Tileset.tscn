@@ -32,7 +32,6 @@
 [ext_resource path="res://assets/pipe_004.png" type="Texture" id=30]
 [ext_resource path="res://assets/Brace_007.png" type="Texture" id=31]
 [ext_resource path="res://assets/Brace_0071.png" type="Texture" id=32]
-[ext_resource path="res://Spikes.gd" type="Script" id=33]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -40,6 +39,11 @@ custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 29.3805, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 12.1341 )
@@ -525,7 +529,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="spikes" type="Sprite" parent="." index="30"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 32, 288 )
 texture = ExtResource( 31 )
@@ -546,33 +549,34 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spikes/collision" index="0"]
 
-shape = SubResource( 1 )
+position = Vector2( 0, -16.2901 )
+shape = SubResource( 2 )
 
 [node name="spikes2" type="Sprite" parent="." index="31"]
 
 show_behind_parent = true
 position = Vector2( 96, 288 )
 texture = ExtResource( 32 )
-script = ExtResource( 33 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Area2D" type="Area2D" parent="spikes2" index="0"]
+[node name="Area2D" type="StaticBody2D" parent="spikes2" index="0"]
 
 position = Vector2( 0, 9.13409 )
 scale = Vector2( 1, 0.71456 )
 input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spikes2/Area2D" index="0"]
 
 position = Vector2( 0, 20 )
-shape = SubResource( 2 )
-
-[connection signal="body_entered" from="spikes2/Area2D" to="spikes2" method="_on_Area2D_body_entered"]
+shape = SubResource( 3 )
 
 

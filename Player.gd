@@ -12,7 +12,11 @@ var velocity = Vector2()
 var onair_time = 0
 var on_floor = false
 
-onready var sprite = $AnimatedSprite
+onready var animated_sprite = $AnimatedSprite
+
+func _ready():
+	animated_sprite.animation = "idle"
+	animated_sprite.play()
 
 func _physics_process(delta):
 
@@ -43,3 +47,20 @@ func _physics_process(delta):
 	# Jump
 	if on_floor and Input.is_action_just_pressed("ui_up"):
 		velocity.y = -JUMP_SPEED
+	
+
+	if velocity.x != 0 && on_floor:
+		var is_accelerating = (Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_right"))
+		if is_accelerating:
+			animated_sprite.animation = "move"
+		else:
+			animated_sprite.animation = "slide"
+		animated_sprite.flip_h = velocity.x < 0
+	elif !on_floor:
+		if velocity.y < 0:
+			animated_sprite.animation = "ascend"
+		else:
+			animated_sprite.animation = "descend"
+		animated_sprite.flip_h = velocity.x < 0
+	else:
+		animated_sprite.animation = "idle"

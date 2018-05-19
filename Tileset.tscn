@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/Back_012.png" type="Texture" id=1]
 [ext_resource path="res://assets/Back_011.png" type="Texture" id=2]
@@ -22,20 +22,27 @@
 [ext_resource path="res://assets/Brace_001.png" type="Texture" id=20]
 [ext_resource path="res://assets/Brace_008.png" type="Texture" id=21]
 [ext_resource path="res://assets/Brace_006.png" type="Texture" id=22]
-[ext_resource path="res://assets/Brace_007.png" type="Texture" id=23]
-[ext_resource path="res://assets/Brace_002.png" type="Texture" id=24]
-[ext_resource path="res://assets/Back_001.png" type="Texture" id=25]
-[ext_resource path="res://assets/Crate_001.png" type="Texture" id=26]
-[ext_resource path="res://assets/Crate_002.png" type="Texture" id=27]
-[ext_resource path="res://assets/pipe_002.png" type="Texture" id=28]
-[ext_resource path="res://assets/pipe_001.png" type="Texture" id=29]
-[ext_resource path="res://assets/pipe_003.png" type="Texture" id=30]
-[ext_resource path="res://assets/pipe_004.png" type="Texture" id=31]
+[ext_resource path="res://assets/Brace_002.png" type="Texture" id=23]
+[ext_resource path="res://assets/Back_001.png" type="Texture" id=24]
+[ext_resource path="res://assets/Crate_001.png" type="Texture" id=25]
+[ext_resource path="res://assets/Crate_002.png" type="Texture" id=26]
+[ext_resource path="res://assets/pipe_002.png" type="Texture" id=27]
+[ext_resource path="res://assets/pipe_001.png" type="Texture" id=28]
+[ext_resource path="res://assets/pipe_003.png" type="Texture" id=29]
+[ext_resource path="res://assets/pipe_004.png" type="Texture" id=30]
+[ext_resource path="res://assets/Brace_007.png" type="Texture" id=31]
+[ext_resource path="res://assets/Brace_0071.png" type="Texture" id=32]
+[ext_resource path="res://Spikes.gd" type="Script" id=33]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 12.1341 )
 
 [node name="Tailset" type="Node"]
 
@@ -308,37 +315,12 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="floor4" type="Sprite" parent="." index="22"]
+[node name="floor5" type="Sprite" parent="." index="22"]
 
 editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 224, 224 )
 texture = ExtResource( 23 )
-_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="collision" type="StaticBody2D" parent="floor4" index="0"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floor4/collision" index="0"]
-
-shape = SubResource( 1 )
-
-[node name="floor5" type="Sprite" parent="." index="23"]
-
-editor/display_folded = true
-show_behind_parent = true
-position = Vector2( 288, 224 )
-texture = ExtResource( 24 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -358,12 +340,12 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="floor6" type="Sprite" parent="." index="24"]
+[node name="floor6" type="Sprite" parent="." index="23"]
 
 editor/display_folded = true
 show_behind_parent = true
-position = Vector2( 352, 224 )
-texture = ExtResource( 25 )
+position = Vector2( 288, 224 )
+texture = ExtResource( 24 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -383,12 +365,12 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="floor7" type="Sprite" parent="." index="25"]
+[node name="floor7" type="Sprite" parent="." index="24"]
 
 editor/display_folded = true
 show_behind_parent = true
-position = Vector2( 416, 224 )
-texture = ExtResource( 26 )
+position = Vector2( 352, 224 )
+texture = ExtResource( 25 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -408,12 +390,12 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="floor8" type="Sprite" parent="." index="26"]
+[node name="floor8" type="Sprite" parent="." index="25"]
 
 editor/display_folded = true
 show_behind_parent = true
-position = Vector2( 480, 224 )
-texture = ExtResource( 27 )
+position = Vector2( 416, 224 )
+texture = ExtResource( 26 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -433,12 +415,12 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="pipe1" type="Sprite" parent="." index="27"]
+[node name="pipe1" type="Sprite" parent="." index="26"]
 
 editor/display_folded = true
 show_behind_parent = true
-position = Vector2( 544, 224 )
-texture = ExtResource( 28 )
+position = Vector2( 480, 224 )
+texture = ExtResource( 27 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -460,12 +442,12 @@ build_mode = 0
 polygon = PoolVector2Array( -27, -32, -27, 32, -27, 32, -3, 32, -3, 16, 32, 16, 32, -16, -3, -16, -3, -32 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="pipe2" type="Sprite" parent="." index="28"]
+[node name="pipe2" type="Sprite" parent="." index="27"]
 
 editor/display_folded = true
 show_behind_parent = true
-position = Vector2( 608, 224 )
-texture = ExtResource( 29 )
+position = Vector2( 544, 224 )
+texture = ExtResource( 28 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -487,12 +469,12 @@ build_mode = 0
 polygon = PoolVector2Array( -32, -16, -32, 16, 32, 16, 32, -16 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="pipe3" type="Sprite" parent="." index="29"]
+[node name="pipe3" type="Sprite" parent="." index="28"]
 
 editor/display_folded = true
 show_behind_parent = true
-position = Vector2( 672, 224 )
-texture = ExtResource( 30 )
+position = Vector2( 608, 224 )
+texture = ExtResource( 29 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -514,12 +496,12 @@ build_mode = 0
 polygon = PoolVector2Array( -32, -16, -32, 16, 32, 16, 32, -16 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="pipe4" type="Sprite" parent="." index="30"]
+[node name="pipe4" type="Sprite" parent="." index="29"]
 
 editor/display_folded = true
 show_behind_parent = true
-position = Vector2( 736, 224 )
-texture = ExtResource( 31 )
+position = Vector2( 672, 224 )
+texture = ExtResource( 30 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -540,5 +522,57 @@ bounce = 0.0
 build_mode = 0
 polygon = PoolVector2Array( -32, -16, -32, 16, 3, 16, 3, 32, 3, 32, 27, 32, 27, -32, 3, -32, 3, -16 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="spikes" type="Sprite" parent="." index="30"]
+
+editor/display_folded = true
+show_behind_parent = true
+position = Vector2( 32, 288 )
+texture = ExtResource( 31 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="collision" type="StaticBody2D" parent="spikes" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikes/collision" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="spikes2" type="Sprite" parent="." index="31"]
+
+show_behind_parent = true
+position = Vector2( 96, 288 )
+texture = ExtResource( 32 )
+script = ExtResource( 33 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[node name="Area2D" type="Area2D" parent="spikes2" index="0"]
+
+position = Vector2( 0, 9.13409 )
+scale = Vector2( 1, 0.71456 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikes2/Area2D" index="0"]
+
+position = Vector2( 0, 20 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="spikes2/Area2D" to="spikes2" method="_on_Area2D_body_entered"]
 
 

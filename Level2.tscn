@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Tailset.tres" type="TileSet" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://DeadZone.gd" type="Script" id=3]
+[ext_resource path="res://Portal.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[node name="Level2" type="Node" index="0"]
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+position = Vector2( -608.964, 6.02936 )
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -393222, 16, 0, -393221, 16, 0, -393220, 16, 0, -393219, 24, 0, -327686, 16, 0, -327685, 16, 0, -327684, 16, 0, -327683, 24, 0, -262150, 16, 0, -262149, 16, 0, -262148, 16, 0, -262147, 24, 0, -196614, 16, 0, -196613, 16, 0, -196612, 16, 0, -196611, 24, 0, -131078, 16, 0, -131077, 16, 0, -131076, 16, 0, -131075, 24, 0, -65542, 16, 0, -65541, 16, 0, -65540, 16, 0, -65539, 24, 0, -6, 16, 0, -5, 16, 0, -4, 16, 0, -3, 24, 0, -65528, 20, 0, -65524, 20, 0, 65530, 16, 0, 65531, 16, 0, 65532, 16, 0, 65533, 24, 0, 0, 17, 0, 8, 20, 0, 12, 20, 0, 131061, 22, 0, 131062, 22, 0, 131063, 22, 0, 131064, 22, 0, 131065, 22, 0, 131066, 22, 0, 131067, 22, 0, 131068, 22, 0, 131069, 22, 0, 131070, 22, 0, 131071, 22, 0, 65536, 22, 0, 65537, 22, 0, 65538, 22, 0, 65539, 22, 0, 65540, 22, 0, 65541, 22, 0, 65542, 22, 0, 65543, 22, 0, 65544, 22, 0, 65548, 22, 0, 65549, 22, 0, 65550, 22, 0, 65551, 22, 0, 65552, 22, 0, 65553, 22, 0, 65554, 22, 0, 65555, 22, 0, 65556, 22, 0, 65557, 22, 0, 327669, 31, 0, 327670, 31, 0, 327671, 31, 0, 327672, 31, 0, 327673, 31, 0, 327674, 31, 0, 327675, 31, 0, 327676, 31, 0, 327677, 31, 0, 327678, 31, 0, 327679, 31, 0, 262144, 31, 0, 262145, 31, 0, 262146, 31, 0, 262147, 31, 0, 262148, 31, 0, 262149, 31, 0, 262150, 31, 0, 262151, 31, 0, 262152, 31, 0, 262153, 31, 0, 262154, 31, 0, 262155, 31, 0, 262156, 31, 0, 262157, 31, 0, 262158, 31, 0, 262159, 31, 0, 262160, 31, 0, 262161, 31, 0, 262162, 31, 0, 262163, 31, 0, 262164, 31, 0, 262165, 31, 0, 262166, 31, 0 )
+
+[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( -679.808, 28.6394 )
+
+[node name="DeadZone" type="Node" parent="." index="2"]
+
+script = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="DeadZone" index="0"]
+
+position = Vector2( -223.418, 296.945 )
+scale = Vector2( 33.9626, 1 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadZone/Area2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="Portal" parent="." index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 764.219, -115.468 )
+scale = Vector2( 1, 5.73886 )
+scene = "res://Level3.tscn"
+
+[connection signal="body_entered" from="DeadZone/Area2D" to="DeadZone" method="_on_Area2D_body_entered"]
+
+

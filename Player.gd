@@ -90,6 +90,9 @@ func _physics_process(delta):
 
 
 func _on_Player_hit():
+	if !alive:
+		return
+
 	alive = false
 	animated_sprite.animation = "dead"
 	respawn_timer.start()

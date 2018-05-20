@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://enemy/FlameThrower.gd" type="Script" id=1]
+[ext_resource path="res://enemy/Flame.tscn" type="PackedScene" id=2]
+
+[node name="FlameThrower" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+radius = 150.0
+velocity = 150.0
+
+[node name="RotationTimer" type="Timer" parent="." index="0"]
+
+process_mode = 0
+wait_time = 0.1
+one_shot = false
+autostart = true
+
+[node name="ThrowTimer" type="Timer" parent="." index="1"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = true
+
+[node name="Flame" parent="." index="2" instance=ExtResource( 2 )]
+
+scale = Vector2( 0.37378, 0.37378 )
+
+[connection signal="timeout" from="RotationTimer" to="." method="_on_RotationTimer_timeout"]
+
+[connection signal="timeout" from="ThrowTimer" to="." method="_on_ThrowTimer_timeout"]
+
+

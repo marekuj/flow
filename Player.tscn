@@ -3,13 +3,13 @@
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/fox_07.png" type="Texture" id=2]
 [ext_resource path="res://assets/character/fox_08.png" type="Texture" id=3]
-[ext_resource path="res://assets/character/fox_04.png" type="Texture" id=4]
-[ext_resource path="res://assets/character/fox_05.png" type="Texture" id=5]
-[ext_resource path="res://assets/character/fox_06.png" type="Texture" id=6]
-[ext_resource path="res://assets/character/fox_25.png" type="Texture" id=7]
-[ext_resource path="res://assets/character/fox_26.png" type="Texture" id=8]
-[ext_resource path="res://assets/character/fox_27.png" type="Texture" id=9]
-[ext_resource path="res://assets/character/fox_09.png" type="Texture" id=10]
+[ext_resource path="res://assets/character/fox_09.png" type="Texture" id=4]
+[ext_resource path="res://assets/character/fox_04.png" type="Texture" id=5]
+[ext_resource path="res://assets/character/fox_05.png" type="Texture" id=6]
+[ext_resource path="res://assets/character/fox_06.png" type="Texture" id=7]
+[ext_resource path="res://assets/character/fox_25.png" type="Texture" id=8]
+[ext_resource path="res://assets/character/fox_26.png" type="Texture" id=9]
+[ext_resource path="res://assets/character/fox_27.png" type="Texture" id=10]
 [ext_resource path="res://assets/character/fox_10.png" type="Texture" id=11]
 [ext_resource path="res://assets/character/fox_11.png" type="Texture" id=12]
 [ext_resource path="res://assets/character/fox_12.png" type="Texture" id=13]
@@ -25,19 +25,19 @@ animations = [ {
 "name": "ascend",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "descend",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "move",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "dead",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": false,
-"name": "descend",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
@@ -60,7 +60,7 @@ height = 27.0263
 [sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -70,11 +70,11 @@ _sections_unfolded = [ "Resource" ]
 [node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "collision" ]
+_sections_unfolded = [ "Collision", "Z Index", "collision" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 

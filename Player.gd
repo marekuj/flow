@@ -15,6 +15,8 @@ var onair_time = 0
 var on_floor = false
 var alive = true
 
+var bullet = load("res://Bullet.tscn")
+
 onready var mouse_pos = get_viewport().get_mouse_position()
 onready var animated_sprite = $AnimatedSprite
 onready var respawn_timer = $RespawnTimer
@@ -92,7 +94,6 @@ func _on_RespawnTimer_timeout():
 	get_tree().reload_current_scene()
 	
 func shoot():
-	var bullet = load("res://Bullet.tscn")
 	var bullet_instance = bullet.instance()
 	bullet_instance.position = weapon.get_global_position()
 	bullet_instance.direction = mouse_pos

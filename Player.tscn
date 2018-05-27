@@ -1,38 +1,38 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/character/fox_10.png" type="Texture" id=2]
-[ext_resource path="res://assets/character/fox_11.png" type="Texture" id=3]
-[ext_resource path="res://assets/character/fox_12.png" type="Texture" id=4]
-[ext_resource path="res://assets/character/fox_01.png" type="Texture" id=5]
-[ext_resource path="res://assets/character/fox_02.png" type="Texture" id=6]
-[ext_resource path="res://assets/character/fox_03.png" type="Texture" id=7]
-[ext_resource path="res://assets/character/fox_07.png" type="Texture" id=8]
-[ext_resource path="res://assets/character/fox_08.png" type="Texture" id=9]
+[ext_resource path="res://assets/character/fox_07.png" type="Texture" id=2]
+[ext_resource path="res://assets/character/fox_08.png" type="Texture" id=3]
+[ext_resource path="res://assets/character/fox_04.png" type="Texture" id=4]
+[ext_resource path="res://assets/character/fox_05.png" type="Texture" id=5]
+[ext_resource path="res://assets/character/fox_06.png" type="Texture" id=6]
+[ext_resource path="res://assets/character/fox_25.png" type="Texture" id=7]
+[ext_resource path="res://assets/character/fox_26.png" type="Texture" id=8]
+[ext_resource path="res://assets/character/fox_27.png" type="Texture" id=9]
 [ext_resource path="res://assets/character/fox_09.png" type="Texture" id=10]
-[ext_resource path="res://assets/character/fox_04.png" type="Texture" id=11]
-[ext_resource path="res://assets/character/fox_05.png" type="Texture" id=12]
-[ext_resource path="res://assets/character/fox_06.png" type="Texture" id=13]
-[ext_resource path="res://assets/character/fox_25.png" type="Texture" id=14]
-[ext_resource path="res://assets/character/fox_26.png" type="Texture" id=15]
-[ext_resource path="res://assets/character/fox_27.png" type="Texture" id=16]
+[ext_resource path="res://assets/character/fox_10.png" type="Texture" id=11]
+[ext_resource path="res://assets/character/fox_11.png" type="Texture" id=12]
+[ext_resource path="res://assets/character/fox_12.png" type="Texture" id=13]
+[ext_resource path="res://assets/character/fox_01.png" type="Texture" id=14]
+[ext_resource path="res://assets/character/fox_02.png" type="Texture" id=15]
+[ext_resource path="res://assets/character/fox_03.png" type="Texture" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
-"loop": false,
-"name": "slide",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": false,
 "name": "ascend",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "move",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "dead",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
@@ -41,13 +41,13 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "move",
+"loop": false,
+"name": "slide",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "dead",
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -60,14 +60,14 @@ height = 27.0263
 [sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 3

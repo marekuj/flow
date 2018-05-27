@@ -9,6 +9,7 @@ var direction
 var velocity
 
 onready var sprite = $AnimatedSprite
+onready var collisionBody = $CollisionShape2D
 
 func _ready():
 	sprite.animation = "flight"
@@ -22,6 +23,7 @@ func _physics_process(delta):
 		move_and_slide(velocity)
 	else:
 		sprite.animation = "default"
+		collisionBody.disabled = false
 	
 func lifecycle():
 	time_elapsed += 1

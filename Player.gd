@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 signal hit
 
+const MAX_BULLETS = 3
 const GRAVITY_VEC = Vector2(0, 900)
 const FLOOR_NORMAL = Vector2(0, -1)
 const SLOPE_SLIDE_STOP = 25.0
@@ -17,6 +18,8 @@ var alive = true
 
 var bullet = load("res://Bullet.tscn")
 
+var bullet_number = MAX_BULLETS
+
 onready var mouse_pos = get_viewport().get_mouse_position()
 onready var animated_sprite = $AnimatedSprite
 onready var respawn_timer = $RespawnTimer
@@ -30,7 +33,8 @@ func _ready():
 
 func _input(event):
 	if (event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.pressed):
-		shoot()
+		if (bullet_number > 0):
+			shoot()
 		
 func _physics_process(delta):
 	mouse_pos = camera.get_global_mouse_position()
@@ -98,3 +102,4 @@ func shoot():
 	bullet_instance.position = weapon.get_global_position()
 	bullet_instance.direction = mouse_pos
 	get_parent().add_child(bullet_instance)
+	bullet_number -= 1

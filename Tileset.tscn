@@ -48,7 +48,7 @@ extents = Vector2( 29.3805, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 32, 12.1341 )
 
-[node name="Tailset" type="Node"]
+[node name="Tailset" type="Node" index="0"]
 
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
@@ -246,7 +246,6 @@ __meta__ = {
 
 [node name="floor" type="Sprite" parent="." index="19"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 32, 224 )
 texture = ExtResource( 20 )
@@ -264,14 +263,15 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor/collision" index="0"]
 
 shape = SubResource( 1 )
+one_way_collision = true
 
 [node name="floor2" type="Sprite" parent="." index="20"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 96, 224 )
 texture = ExtResource( 21 )
@@ -296,7 +296,6 @@ shape = SubResource( 1 )
 
 [node name="floor3" type="Sprite" parent="." index="21"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 160, 224 )
 texture = ExtResource( 22 )
@@ -318,10 +317,10 @@ bounce = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor3/collision" index="0"]
 
 shape = SubResource( 1 )
+one_way_collision = true
 
 [node name="floor5" type="Sprite" parent="." index="22"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 224, 224 )
 texture = ExtResource( 23 )
@@ -343,10 +342,10 @@ bounce = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor5/collision" index="0"]
 
 shape = SubResource( 1 )
+one_way_collision = true
 
 [node name="floor6" type="Sprite" parent="." index="23"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 288, 224 )
 texture = ExtResource( 24 )
@@ -371,7 +370,6 @@ shape = SubResource( 1 )
 
 [node name="floor7" type="Sprite" parent="." index="24"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 352, 224 )
 texture = ExtResource( 25 )
@@ -396,7 +394,6 @@ shape = SubResource( 1 )
 
 [node name="floor8" type="Sprite" parent="." index="25"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 416, 224 )
 texture = ExtResource( 26 )
@@ -421,7 +418,6 @@ shape = SubResource( 1 )
 
 [node name="pipe1" type="Sprite" parent="." index="26"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 480, 224 )
 texture = ExtResource( 27 )
@@ -444,11 +440,11 @@ bounce = 0.0
 
 build_mode = 0
 polygon = PoolVector2Array( -27, -32, -27, 32, -27, 32, -3, 32, -3, 16, 32, 16, 32, -16, -3, -16, -3, -32 )
+one_way_collision = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="pipe2" type="Sprite" parent="." index="27"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 544, 224 )
 texture = ExtResource( 28 )
@@ -471,11 +467,11 @@ bounce = 0.0
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -16, -32, 16, 32, 16, 32, -16 )
+one_way_collision = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="pipe3" type="Sprite" parent="." index="28"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 608, 224 )
 texture = ExtResource( 29 )
@@ -498,11 +494,11 @@ bounce = 0.0
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -16, -32, 16, 32, 16, 32, -16 )
+one_way_collision = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="pipe4" type="Sprite" parent="." index="29"]
 
-editor/display_folded = true
 show_behind_parent = true
 position = Vector2( 672, 224 )
 texture = ExtResource( 30 )
@@ -525,6 +521,7 @@ bounce = 0.0
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -16, -32, 16, 3, 16, 3, 32, 3, 32, 27, 32, 27, -32, 3, -32, 3, -16 )
+one_way_collision = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="spikes" type="Sprite" parent="." index="30"]

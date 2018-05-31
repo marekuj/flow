@@ -10,9 +10,17 @@ config_version=3
 
 [application]
 
-config/name="Flow"
-run/main_scene="res://Level.tscn"
-config/icon="res://icon.png"
+config/name="Waterfox"
+run/main_scene="res://StartMenu.tscn"
+config/icon="res://fox_icon.png"
+
+[autoload]
+
+Global="*res://Global.gd"
+
+[display]
+
+window/size/resizable=false
 
 [input]
 

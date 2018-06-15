@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
 const BULLET_SPEED = 500
-const LIFETIME = 400
+const LIFETIME = 250
 
 var time_elapsed = 0
 var direction
 
 var velocity
+var maker 
 
 onready var sprite = $AnimatedSprite
 onready var collisionBody = $CollisionShape2D
@@ -28,4 +29,5 @@ func _physics_process(delta):
 func lifecycle():
 	time_elapsed += 1
 	if time_elapsed >= LIFETIME:
+		maker.emit_signal("bullet")
 		queue_free()

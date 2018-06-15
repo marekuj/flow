@@ -1,10 +1,14 @@
 extends Control
 
-onready var Info = $InfoLabel
+onready var InfoHeart = $InfoHeart
+onready var InfoBullets = $InfoBullets
 
 func _ready():
 	pass
 
 
-func setText(text):	
-	Info.text = str(text)
+func setLives(text):
+	InfoHeart.text = str(text)
+
+func setBullets(text):
+	InfoBullets.text = str(text)

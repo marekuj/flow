@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 signal hit
+signal bullet
 
-const MAX_BULLETS = 3
 const GRAVITY_VEC = Vector2(0, 900)
 const FLOOR_NORMAL = Vector2(0, -1)
 const SLOPE_SLIDE_STOP = 25.0
@@ -23,13 +23,14 @@ var bullet = load("res://Bullet.tscn")
 var gameManu = load("res://GameMenu.tscn")
 var qui = load("res://Gui.tscn")
 
-var bullet_number = MAX_BULLETS
+var bullet_number = null
 
 onready var mouse_pos = get_viewport().get_mouse_position()
 onready var animated_sprite = $AnimatedSprite
 onready var respawn_timer = $RespawnTimer
 onready var weapon = $AnimatedSprite2
 onready var camera = $Camera2D
+
 
 func _ready():
 	global = get_node("/root/Global")
@@ -38,11 +39,13 @@ func _ready():
 	animated_sprite.play()
 	weapon.play()
 
+
 func _input(event):
 	if (event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.pressed):
 		if (bullet_number > 0):
 			shoot()
-		
+
+
 func _physics_process(delta):
 	prepare()	
 	updateGui()
@@ -105,9 +108,18 @@ func _on_Player_hit():
 
 	alive = false
 	global.lives-= 1
-	gui_instance.setText(global.lives)
+	gui_instance.setLives(global.lives)
 	animated_sprite.animation = "dead"
 	respawn_timer.start()
+
+
+func _on_Player_bullet():
+	if !alive:
+		return
+
+	bullet_number += 1
+	gui_instance.setBullets(bullet_number)
+
 
 func _on_RespawnTimer_timeout():
 	if global.lives == 0:
@@ -115,13 +127,17 @@ func _on_RespawnTimer_timeout():
 		get_tree().change_scene("res://Level.tscn")
 	else:
 		get_tree().reload_current_scene()
-		
+
+
 func shoot():
 	var bullet_instance = bullet.instance()
 	bullet_instance.position = weapon.get_global_position()
 	bullet_instance.direction = mouse_pos
+	bullet_instance.maker = self
 	get_parent().add_child(bullet_instance)
 	bullet_number -= 1
+	gui_instance.setBullets(bullet_number)	
+
 
 func prepare():	
 	if !firstUpdate:
@@ -129,8 +145,13 @@ func prepare():
 
 	gui_instance = qui.instance()
 	get_parent().add_child(gui_instance)
-	gui_instance.setText(global.lives)
+	gui_instance.setLives(global.lives)
+	gui_instance.setBullets(global.bullets)
+
+	bullet_number = global.bullets
+
 	firstUpdate = false	
+
 
 func showMenu():	
 	var gameManu_instance = gameManu.instance()
@@ -139,6 +160,7 @@ func showMenu():
 	var center = camera.get_camera_screen_center() - gameManu_instance.rect_size/2
 	gameManu_instance.margin_left = center.x
 	gameManu_instance.margin_top = center.y
+
 
 func updateGui():
 	if Input.is_action_just_pressed("ui_cancel"):

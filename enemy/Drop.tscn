@@ -127,6 +127,7 @@ _sections_unfolded = [ "Collision" ]
 
 position = Vector2( -0.387421, -2.90567 )
 shape = SubResource( 6 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 

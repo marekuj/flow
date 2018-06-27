@@ -1,9 +1,41 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Tailset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemy/WalkingFlame.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enemy/DroppingFlame.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enemy/FlameThrower.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Deadzone.gd" type="Script" id=6]
+[ext_resource path="res://assets/pipe_005.png" type="Texture" id=7]
+[ext_resource path="res://Valve.gd" type="Script" id=8]
+[ext_resource path="res://assets/water/water.png" type="Texture" id=9]
+[ext_resource path="res://Extinguish.gd" type="Script" id=10]
+[ext_resource path="res://assets/font/comicbd.ttf" type="DynamicFontData" id=11]
 
-[node name="Level3" type="Node"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 31.8448, 16.5723 )
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 24.9119
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 13.063, 12.1781 )
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 160
+use_mipmaps = true
+use_filter = false
+font_data = ExtResource( 11 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Font/fallback", "Settings" ]
+
+[node name="Level3" type="Node" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -23,10 +55,379 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( -327682, 20, 0, -262146, 20, 0, -196610, 20, 0, -131074, 20, 0, -65538, 20, 0, -2, 20, 0, 65527, 25, 0, 65529, 25, 0, 65531, 25, 0, 65533, 25, 0, 65534, 20, 0, 131062, 21, 0, 131063, 21, 0, 131064, 21, 0, 131065, 21, 0, 131066, 21, 0, 131067, 21, 0, 131068, 21, 0, 131069, 21, 0, 131070, 21, 0, 131071, 21, 0, 65536, 21, 0, 65537, 21, 0, 65538, 21, 0, 65539, 21, 0, 65540, 21, 0, 65541, 21, 0, 65542, 21, 0, 65543, 21, 0, 65544, 21, 0 )
+tile_data = PoolIntArray( -393218, 20, 0, -393217, 30, 0, -458752, 30, 0, -458751, 30, 0, -458750, 30, 0, -458749, 30, 0, -458748, 30, 0, -458747, 30, 0, -458746, 30, 0, -458745, 30, 0, -458744, 30, 0, -458743, 30, 0, -458742, 30, 0, -458741, 30, 0, -458740, 30, 0, -458739, 30, 0, -458738, 30, 0, -458737, 30, 0, -458736, 30, 0, -458735, 30, 0, -458734, 30, 0, -458733, 30, 0, -458732, 30, 0, -458731, 30, 0, -458730, 30, 0, -458729, 30, 0, -458728, 30, 0, -458727, 30, 0, -458726, 30, 0, -458725, 30, 0, -458724, 30, 0, -458723, 30, 0, -458722, 30, 0, -458721, 30, 0, -458720, 30, 0, -458719, 30, 0, -458718, 30, 0, -458717, 30, 0, -458716, 30, 0, -458715, 30, 0, -458714, 30, 0, -458713, 30, 0, -458712, 30, 0, -458711, 30, 0, -458710, 30, 0, -458709, 20, 0, -327682, 20, 0, -393207, 16, 0, -393173, 20, 0, -262146, 20, 0, -327671, 16, 0, -327637, 20, 0, -196610, 20, 0, -262135, 16, 0, -262132, 15, 0, -262118, 15, 0, -262101, 20, 0, -131074, 20, 0, -196599, 16, 0, -196565, 20, 0, -65538, 20, 0, -131063, 16, 0, -131029, 20, 0, -2, 20, 0, -65527, 16, 0, -65493, 20, 0, 65527, 25, 0, 65529, 25, 0, 65531, 25, 0, 65533, 25, 0, 65534, 20, 0, 9, 16, 0, 43, 20, 0, 131062, 19, 0, 131063, 19, 0, 131064, 19, 0, 131065, 19, 0, 131066, 19, 0, 131067, 19, 0, 131068, 19, 0, 131069, 19, 0, 131070, 19, 0, 131071, 19, 0, 65536, 19, 0, 65537, 19, 0, 65538, 19, 0, 65539, 19, 0, 65540, 19, 0, 65541, 19, 0, 65542, 19, 0, 65543, 19, 0, 65544, 19, 0, 65545, 19, 0, 65546, 19, 0, 65547, 19, 0, 65548, 19, 0, 65549, 19, 0, 65550, 19, 0, 65551, 19, 0, 65552, 19, 0, 65553, 31, 0, 65554, 31, 0, 65555, 31, 0, 65556, 26, 0, 65557, 28, 0, 65558, 27, 0, 65559, 29, 0, 65562, 26, 0, 65563, 28, 0, 65564, 27, 0, 65565, 29, 0, 65568, 26, 0, 65569, 28, 0, 65570, 27, 0, 65571, 29, 0, 65579, 20, 0, 196606, 20, 0, 196607, 30, 0, 131072, 30, 0, 131073, 30, 0, 131074, 30, 0, 131075, 30, 0, 131076, 30, 0, 131077, 30, 0, 131078, 30, 0, 131079, 30, 0, 131080, 30, 0, 131081, 30, 0, 131082, 30, 0, 131083, 30, 0, 131084, 19, 0, 131085, 19, 0, 131086, 30, 0, 131087, 30, 0, 131088, 30, 0, 131089, 30, 0, 131090, 30, 0, 131091, 30, 0, 131092, 30, 0, 131093, 30, 0, 131094, 30, 0, 131095, 30, 0, 131096, 30, 0, 131097, 30, 0, 131098, 30, 0, 131099, 30, 0, 131100, 19, 0, 131101, 19, 0, 131102, 19, 0, 131103, 30, 0, 131104, 30, 0, 131105, 30, 0, 131106, 30, 0, 131107, 30, 0, 131115, 20, 0, 262142, 20, 0, 196612, 9, 0, 196613, 9, 0, 196614, 9, 0, 196618, 16, 0, 196640, 16, 0, 196647, 15, 0, 196651, 20, 0, 327678, 20, 0, 262144, 9, 0, 262146, 9, 0, 262147, 9, 0, 262148, 9, 0, 262154, 16, 0, 262176, 16, 0, 262187, 20, 0, 393214, 20, 0, 327690, 16, 0, 327712, 16, 0, 327723, 20, 0, 458750, 20, 0, 393226, 16, 0, 393248, 16, 0, 393259, 20, 0, 524286, 20, 0, 458762, 16, 0, 458772, 24, 0, 458773, 24, 0, 458774, 19, 0, 458775, 19, 0, 458776, 19, 0, 458777, 19, 0, 458778, 24, 0, 458779, 24, 0, 458783, 20, 0, 458784, 19, 0, 458785, 19, 0, 458786, 19, 0, 458787, 19, 0, 458788, 19, 0, 458789, 19, 0, 458790, 19, 0, 458791, 19, 0, 458792, 19, 0, 458793, 19, 0, 458794, 19, 0, 458795, 20, 0, 589822, 20, 0, 524298, 16, 0, 524302, 24, 0, 524303, 19, 0, 524304, 24, 0, 524308, 24, 0, 524316, 31, 0, 524317, 31, 0, 524318, 31, 0, 524330, 1, 0, 524331, 20, 0, 655358, 20, 0, 589834, 16, 0, 589835, 24, 0, 589836, 19, 0, 589837, 19, 0, 589838, 19, 0, 589840, 16, 0, 589841, 31, 0, 589842, 31, 0, 589843, 31, 0, 589852, 16, 0, 589866, 1, 0, 589867, 20, 0, 720894, 20, 0, 655369, 24, 0, 655370, 19, 0, 655371, 19, 0, 655376, 16, 0, 655383, 15, 0, 655388, 16, 0, 655402, 1, 0, 655403, 20, 0, 786430, 20, 0, 720901, 19, 0, 720902, 19, 0, 720903, 19, 0, 720904, 19, 0, 720905, 19, 0, 720906, 16, 0, 720910, 15, 0, 720912, 16, 0, 720924, 16, 0, 720938, 1, 0, 720939, 20, 0, 851966, 20, 0, 786442, 16, 0, 786448, 16, 0, 786460, 16, 0, 786461, 15, 0, 786474, 1, 0, 786475, 20, 0, 917502, 20, 0, 917503, 23, 0, 851978, 16, 0, 851984, 16, 0, 851996, 16, 0, 852010, 1, 0, 852011, 20, 0, 983038, 20, 0, 983039, 23, 0, 917504, 23, 0, 917514, 16, 0, 917520, 16, 0, 917532, 16, 0, 917546, 1, 0, 917547, 20, 0, 1048574, 20, 0, 1048575, 23, 0, 983040, 23, 0, 983041, 23, 0, 983042, 23, 0, 983050, 16, 0, 983056, 16, 0, 983068, 16, 0, 983082, 1, 0, 983083, 20, 0, 1114110, 20, 0, 1114111, 23, 0, 1048576, 23, 0, 1048577, 23, 0, 1048578, 23, 0, 1048579, 23, 0, 1048580, 23, 0, 1048585, 17, 0, 1048586, 16, 0, 1048592, 16, 0, 1048600, 17, 0, 1048604, 16, 0, 1048618, 1, 0, 1048619, 20, 0, 1179646, 20, 0, 1179647, 19, 0, 1114112, 19, 0, 1114113, 19, 0, 1114114, 19, 0, 1114115, 19, 0, 1114116, 19, 0, 1114117, 19, 0, 1114118, 19, 0, 1114119, 19, 0, 1114120, 19, 0, 1114121, 19, 0, 1114122, 19, 0, 1114123, 19, 0, 1114124, 19, 0, 1114125, 19, 0, 1114126, 19, 0, 1114127, 19, 0, 1114128, 19, 0, 1114129, 19, 0, 1114130, 19, 0, 1114131, 19, 0, 1114132, 19, 0, 1114133, 19, 0, 1114134, 19, 0, 1114135, 19, 0, 1114136, 19, 0, 1114137, 19, 0, 1114138, 19, 0, 1114139, 19, 0, 1114140, 19, 0, 1114141, 19, 0, 1114142, 19, 0, 1114143, 19, 0, 1114144, 19, 0, 1114145, 19, 0, 1114146, 19, 0, 1114147, 19, 0, 1114148, 19, 0, 1114154, 1, 0, 1114155, 20, 0, 1245182, 20, 0, 1179672, 16, 0, 1179690, 1, 0, 1179691, 20, 0, 1310718, 20, 0, 1245208, 16, 0, 1245226, 1, 0, 1245227, 20, 0, 1376254, 20, 0, 1310744, 16, 0, 1310762, 23, 0, 1310763, 20, 0, 1441790, 20, 0, 1376256, 8, 0, 1376257, 8, 0, 1376258, 8, 0, 1376259, 8, 0, 1376280, 16, 0, 1376298, 23, 0, 1376299, 20, 0, 1507326, 20, 0, 1441792, 8, 0, 1441793, 8, 0, 1441794, 8, 0, 1441795, 8, 0, 1441816, 16, 0, 1441833, 23, 0, 1441834, 23, 0, 1441835, 20, 0, 1572862, 20, 0, 1507348, 17, 0, 1507352, 16, 0, 1507366, 23, 0, 1507367, 23, 0, 1507368, 23, 0, 1507369, 23, 0, 1507370, 23, 0, 1507371, 20, 0, 1638398, 20, 0, 1572870, 19, 0, 1572871, 19, 0, 1572872, 19, 0, 1572873, 19, 0, 1572874, 19, 0, 1572875, 19, 0, 1572876, 19, 0, 1572877, 19, 0, 1572878, 19, 0, 1572879, 19, 0, 1572880, 19, 0, 1572881, 19, 0, 1572882, 19, 0, 1572883, 19, 0, 1572884, 19, 0, 1572885, 19, 0, 1572886, 19, 0, 1572887, 19, 0, 1572888, 19, 0, 1572889, 19, 0, 1572890, 20, 0, 1572894, 20, 0, 1572895, 19, 0, 1572896, 19, 0, 1572897, 19, 0, 1572898, 19, 0, 1572899, 19, 0, 1572900, 19, 0, 1572901, 19, 0, 1572902, 19, 0, 1572903, 19, 0, 1572904, 19, 0, 1572905, 19, 0, 1572906, 19, 0, 1572907, 20, 0, 1703934, 20, 0, 1638406, 30, 0, 1638407, 30, 0, 1638408, 30, 0, 1638409, 30, 0, 1638410, 30, 0, 1638411, 30, 0, 1638412, 30, 0, 1638413, 30, 0, 1638414, 30, 0, 1638415, 30, 0, 1638416, 30, 0, 1638417, 30, 0, 1638418, 30, 0, 1638419, 30, 0, 1638420, 30, 0, 1638421, 30, 0, 1638422, 30, 0, 1638423, 30, 0, 1638424, 30, 0, 1638425, 30, 0, 1638426, 19, 0, 1638427, 19, 0, 1638428, 19, 0, 1638429, 19, 0, 1638430, 30, 0, 1638431, 30, 0, 1638432, 30, 0, 1638433, 30, 0, 1638434, 30, 0, 1638435, 30, 0, 1638436, 30, 0, 1638437, 30, 0, 1638438, 30, 0, 1638439, 30, 0, 1638440, 30, 0, 1638441, 30, 0, 1638442, 30, 0, 1638443, 20, 0, 1769470, 20, 0, 1703962, 30, 0, 1703963, 30, 0, 1703964, 30, 0, 1703965, 30, 0, 1703970, 16, 0, 1703979, 20, 0, 1835006, 20, 0, 1835007, 23, 0, 1769506, 16, 0, 1769515, 20, 0, 1900542, 20, 0, 1900543, 23, 0, 1835008, 23, 0, 1835042, 16, 0, 1835051, 20, 0, 1966078, 20, 0, 1966079, 23, 0, 1900544, 23, 0, 1900578, 16, 0, 1900587, 20, 0, 2031614, 20, 0, 2031615, 23, 0, 1966080, 23, 0, 1966081, 23, 0, 1966082, 23, 0, 1966114, 16, 0, 1966123, 20, 0, 2097150, 20, 0, 2097151, 23, 0, 2031616, 23, 0, 2031617, 23, 0, 2031618, 23, 0, 2031619, 23, 0, 2031620, 23, 0, 2031629, 17, 0, 2031641, 14, 0, 2031650, 16, 0, 2031659, 20, 0, 2162686, 20, 0, 2162687, 19, 0, 2097152, 19, 0, 2097153, 19, 0, 2097154, 19, 0, 2097155, 19, 0, 2097156, 19, 0, 2097157, 19, 0, 2097158, 19, 0, 2097159, 19, 0, 2097160, 19, 0, 2097161, 19, 0, 2097162, 19, 0, 2097163, 19, 0, 2097164, 19, 0, 2097165, 19, 0, 2097166, 19, 0, 2097167, 20, 0, 2097176, 14, 0, 2097177, 14, 0, 2097178, 14, 0, 2097181, 20, 0, 2097182, 19, 0, 2097183, 19, 0, 2097184, 19, 0, 2097185, 19, 0, 2097186, 19, 0, 2097187, 19, 0, 2097188, 19, 0, 2097189, 19, 0, 2097190, 19, 0, 2097191, 19, 0, 2097192, 19, 0, 2097193, 19, 0, 2097194, 19, 0, 2097195, 20, 0, 2162703, 20, 0, 2162711, 14, 0, 2162713, 14, 0, 2162715, 14, 0, 2162717, 20, 0, 2228239, 20, 0, 2228242, 5, 0, 2228249, 14, 0, 2228253, 20, 0, 2293775, 20, 0, 2293785, 14, 0, 2293789, 20, 0, 2359311, 20, 0, 2359321, 14, 0, 2359325, 20, 0, 2424847, 20, 0, 2424848, 19, 0, 2424849, 19, 0, 2424850, 19, 0, 2424851, 19, 0, 2424852, 19, 0, 2424853, 19, 0, 2424854, 19, 0, 2424855, 19, 0, 2424856, 19, 0, 2424857, 19, 0, 2424858, 19, 0, 2424859, 19, 0, 2424860, 19, 0, 2424861, 20, 0 )
+_sections_unfolded = [ "Collision", "Occluder", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( 0, 24 )
+position = Vector2( 670.288, -55.7828 )
+
+[node name="Boss" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 164.665, -114.503 )
+scale = Vector2( 9.48333, 6.58865 )
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "Z Index", "collision" ]
+speed = 240
+spread_counter = 0
+fallable = true
+
+[node name="DroppingFlame" parent="." index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 1769.17, -165.54 )
+
+[node name="DroppingFlame2" parent="." index="4" instance=ExtResource( 4 )]
+
+position = Vector2( 2259.61, -195.677 )
+
+[node name="Flame2" parent="." index="5" instance=ExtResource( 3 )]
+
+position = Vector2( 424.678, 1037.19 )
+speed = 450
+spread_counter = 0
+
+[node name="Flame5" parent="." index="6" instance=ExtResource( 3 )]
+
+position = Vector2( 1073.99, 1501.01 )
+speed = 200
+
+[node name="Flame6" parent="." index="7" instance=ExtResource( 3 )]
+
+position = Vector2( 1820.59, 1555.81 )
+speed = 200
+
+[node name="Flame7" parent="." index="8" instance=ExtResource( 3 )]
+
+position = Vector2( 559.514, 2013.9 )
+speed = 380
+spread_counter = 8
+
+[node name="Flame3" parent="." index="9" instance=ExtResource( 3 )]
+
+position = Vector2( 1536.67, 415.897 )
+spread_counter = 1
+
+[node name="FlameThrower" parent="." index="10" instance=ExtResource( 5 )]
+
+position = Vector2( 873.946, 822.876 )
+
+[node name="FlameThrower4" parent="." index="11" instance=ExtResource( 5 )]
+
+position = Vector2( 238.078, 1394.47 )
+
+[node name="FlameThrower2" parent="." index="12" instance=ExtResource( 5 )]
+
+position = Vector2( 1526.69, 820.086 )
+
+[node name="FlameThrower3" parent="." index="13" instance=ExtResource( 5 )]
+
+position = Vector2( 2106.91, 836.823 )
+
+[node name="DroppingFlame3" parent="." index="14" instance=ExtResource( 4 )]
+
+position = Vector2( 1440.21, 1248.39 )
+timeout = 0.2
+gravity_scale = 6.0
+
+[node name="DroppingFlame7" parent="." index="15" instance=ExtResource( 4 )]
+
+position = Vector2( 1847.64, 1250.45 )
+timeout = 0.4
+gravity_scale = 6.0
+
+[node name="DroppingFlame6" parent="." index="16" instance=ExtResource( 4 )]
+
+position = Vector2( 2263.78, 1236.34 )
+timeout = 0.6
+gravity_scale = 6.0
+
+[node name="DroppingFlame5" parent="." index="17" instance=ExtResource( 4 )]
+
+position = Vector2( 759.24, 1242.85 )
+timeout = 1.0
+time_to_live = 0.01
+gravity_scale = 60.0
+
+[node name="Deadzone" type="Area2D" parent="." index="18"]
+
+position = Vector2( 1345.58, -406.023 )
+scale = Vector2( 43.9094, 0.662376 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone" index="0"]
+
+position = Vector2( 0.0517445, 0 )
+shape = SubResource( 1 )
+
+[node name="Deadzone2" type="Area2D" parent="." index="19"]
+
+position = Vector2( 1345.58, -406.023 )
+scale = Vector2( 43.9094, 0.662376 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone2" index="0"]
+
+position = Vector2( 12.3157, 1420.48 )
+scale = Vector2( 0.0662398, 1.36282 )
+shape = SubResource( 1 )
+
+[node name="Deadzone5" type="Area2D" parent="." index="20"]
+
+position = Vector2( 1345.58, -406.023 )
+scale = Vector2( 43.9094, 0.662376 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone5" index="0"]
+
+position = Vector2( 18.1386, 871.791 )
+scale = Vector2( 0.107524, 1.36282 )
+shape = SubResource( 1 )
+
+[node name="Deadzone6" type="Area2D" parent="." index="21"]
+
+position = Vector2( 1345.58, -406.023 )
+scale = Vector2( 43.9094, 0.662376 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone6" index="0"]
+
+position = Vector2( -3.85823, 747.962 )
+scale = Vector2( 0.0659373, 1.36282 )
+shape = SubResource( 1 )
+
+[node name="Deadzone3" type="Area2D" parent="." index="22"]
+
+position = Vector2( 1345.58, -406.023 )
+scale = Vector2( 43.9094, 0.662376 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone3" index="0"]
+
+position = Vector2( -3.67068, 1521.11 )
+scale = Vector2( 0.0662398, 1.36282 )
+shape = SubResource( 1 )
+
+[node name="Deadzone4" type="Area2D" parent="." index="23"]
+
+position = Vector2( 1345.58, -406.023 )
+scale = Vector2( 43.9094, 0.662376 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone4" index="0"]
+
+position = Vector2( -10.8713, 870.569 )
+scale = Vector2( 0.654525, 1.36282 )
+shape = SubResource( 1 )
+
+[node name="Deadzone7" type="Area2D" parent="." index="24"]
+
+position = Vector2( 1345.58, -406.023 )
+scale = Vector2( 43.9094, 0.662376 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone7" index="0"]
+
+position = Vector2( -7.27952, 3093.25 )
+scale = Vector2( 0.4535, 1.36282 )
+shape = SubResource( 1 )
+
+[node name="Deadzone8" type="Area2D" parent="." index="25"]
+
+position = Vector2( 1345.58, -406.023 )
+scale = Vector2( 43.9094, 0.662376 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone8" index="0"]
+
+position = Vector2( 10.2007, 3189.06 )
+scale = Vector2( 0.0862373, 1.36282 )
+shape = SubResource( 1 )
+
+[node name="Deadzone9" type="Area2D" parent="." index="26"]
+
+position = Vector2( 1345.58, -406.023 )
+scale = Vector2( 43.9094, 0.662376 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone9" index="0"]
+
+position = Vector2( 22.924, 3095.77 )
+scale = Vector2( 0.284365, 1.36282 )
+shape = SubResource( 1 )
+
+[node name="Valve" type="Sprite" parent="." index="27"]
+
+editor/display_folded = true
+position = Vector2( 1952.61, 2015.63 )
+z_index = -1
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
+_sections_unfolded = [ "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="Valve" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Valve/Area2D" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="Water" type="Sprite" parent="." index="28"]
+
+visible = false
+position = Vector2( 1024.36, 2366.51 )
+scale = Vector2( 1.62228, 2.07971 )
+texture = ExtResource( 9 )
+centered = false
+offset = Vector2( 0, -160 )
+_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
+
+[node name="WaterArea" type="Area2D" parent="Water" index="0"]
+
+position = Vector2( -625.047, -1131.12 )
+scale = Vector2( 0.61198, 0.477502 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 10 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="Collision" type="CollisionShape2D" parent="Water/WaterArea" index="0"]
+
+position = Vector2( 1438.33, 2219.36 )
+scale = Vector2( 31.7693, 12.3077 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="End" type="Label" parent="." index="29"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1081.0
+margin_top = 1737.0
+margin_right = 1834.0
+margin_bottom = 1961.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.741176, 0.741176, 0.741176, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "The End"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+
+[connection signal="body_entered" from="Deadzone" to="Deadzone" method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Deadzone2" to="Deadzone2" method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Deadzone5" to="Deadzone5" method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Deadzone6" to="Deadzone6" method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Deadzone3" to="Deadzone3" method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Deadzone4" to="Deadzone4" method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Deadzone7" to="Deadzone7" method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Deadzone8" to="Deadzone8" method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Deadzone9" to="Deadzone9" method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Valve/Area2D" to="Valve" method="_on_Area2D_body_entered"]
+
+[connection signal="body_exited" from="Valve/Area2D" to="Valve" method="_on_Area2D_body_exited"]
+
+[connection signal="body_entered" from="Water/WaterArea" to="Water/WaterArea" method="_on_Extinguish_body_entered"]
 
 

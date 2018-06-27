@@ -243,7 +243,7 @@ position = Vector2( 718.488, -315.214 )
 
 [node name="DroppingFlame2" parent="Enemy" index="11" instance=ExtResource( 6 )]
 
-position = Vector2( 922.673, -312.425 )
+position = Vector2( 922.673, -314.697 )
 
 [node name="DroppingFlame4" parent="Enemy" index="12" instance=ExtResource( 6 )]
 

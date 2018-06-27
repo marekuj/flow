@@ -170,3 +170,6 @@ func updateGui():
 
 	gui_instance.margin_left = pos.x
 	gui_instance.margin_top = pos.y + 40
+
+func get_camera():
+	return camera
